@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>{% block title %}{% endblock %}</title>
+
+</head>
+
+<body>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>{% load component_tags %}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        {% block title %}
+        LMS
+        {% endblock %}
+    </title>
+
+    {% tailwind_css %}
+
+    <script src="https://unpkg.com/htmx.org"></script>
+
+    <script
+        defer
+        src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+</head>
+
+<body
+    x-data="{
+        sidebarOpen:false
+    }"
+    class="bg-slate-50"
+>
+
+    {% component "navbar" %}
+
+    {% component "sidebar" %}
+
+    <main class="lg:ml-64 p-4">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</body>
+
+</html>
