@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "apps.academics",
     "apps.core",
     "apps.ai",
+    "apps.learning",
     # third party
     "allauth",
     "allauth.account",
@@ -162,10 +163,13 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 # `allauth` needs this from django
                 "django.template.context_processors.request",
+                "apps.core.context_processors.settings_context",
             ],
         },
     },
 ]
+
+TEMPLATES[0]["OPTIONS"]["context_processors"]
 
 COMPONENTS = {"dirs": [BASE_DIR / "components"]}
 
@@ -193,6 +197,8 @@ DATABASES = {
         "PORT": config("DB_PORT"),
     }
 }
+AI_PROVIDER = config("AI_PROVIDER", default="OPENAI")
+
 
 
 # Password validation

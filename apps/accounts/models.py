@@ -9,6 +9,8 @@ class User(AbstractUser):
         TEACHER = "TEACHER", "Teacher"
         STUDENT = "STUDENT", "Student"
         PARENT = "PARENT", "Parent"
+        INSTRUCTOR = "INSTRUCTOR", "Instructor"
+        LEARNER = "LEARNER", "Learner"
 
     class UserStatus(models.TextChoices):
         PENDING = "PENDING", "Pending"

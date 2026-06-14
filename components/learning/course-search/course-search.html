@@ -1,0 +1,16 @@
+<input
+    type="search"
+    name="q"
+
+    hx-get="{% url 'learning:catalog' %}"
+
+    hx-trigger="
+        keyup changed delay:500ms
+    "
+
+    hx-target="#course-results"
+
+    placeholder="Search courses..."
+
+    class="w-full"
+/>
