@@ -14,7 +14,7 @@ from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # local
-    "accounts",
-    # "core",
+    "apps.accounts",
+    "apps.academics",
+    "apps.core",
+    "apps.ai",
     # third party
     "allauth",
     "allauth.account",
@@ -50,7 +52,6 @@ INSTALLED_APPS = [
     "django_browser_reload",
     # alpine js
     "django_alpine",
-   
     # ... include the providers you want to enable:
     "allauth.socialaccount.providers.amazon",
     "allauth.socialaccount.providers.apple",
@@ -59,6 +60,16 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.github",
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.instagram",
+]
+INSTALLED_APPS += [
+    "django.contrib.sites",
+]
+
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by email
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 AUTH_USER_MODEL = "accounts.User"
@@ -75,6 +86,30 @@ LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 SITE_ID = 1
 
+# modern allauth settings
+ACCOUNT_LOGIN_METHODS = {"email"}
+
+ACCOUNT_SIGNUP_FIELDS = [
+    "email*",
+    "password1*",
+    "password2*",
+]
+
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_LOGOUT_ON_GET = False
+
+ACCOUNT_FORMS = {
+    "signup": "apps.accounts.forms.signup.CustomSignupForm",
+}
+
+ACCOUNT_ADAPTER = "apps.accounts.adapters.LMSAccountAdapter"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -84,6 +119,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+    # Browser reload middleware:
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     # Account middleware:
     "allauth.account.middleware.AccountMiddleware",
@@ -110,12 +146,6 @@ SOCIALACCOUNT_PROVIDERS = {
         "APP": {"client_id": "123", "secret": "456", "key": ""}
     }
 }
-
-AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
-    # `allauth` specific authentication methods, such as login by email
-    "allauth.account.auth_backends.AuthenticationBackend",
-]
 
 
 ROOT_URLCONF = "config.urls"
@@ -213,3 +243,4 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+

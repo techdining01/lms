@@ -1,0 +1,57 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block dashboard_content %}
+
+<div class="space-y-6">
+
+    <h1 class="text-2xl font-bold">
+        Users
+    </h1>
+
+    <ui:table>
+
+        <ui:table-header>
+
+            <ui:table-row>
+
+                <ui:table-head>Name</ui:table-head>
+
+                <ui:table-head>Role</ui:table-head>
+
+                <ui:table-head>Status</ui:table-head>
+
+                <ui:table-head>Action</ui:table-head>
+
+            </ui:table-row>
+
+        </ui:table-header>
+
+        <ui:table-body>
+
+            {% for user in object_list %}
+
+            <ui:table-row>
+
+                <ui:table-cell>
+                    {{ user.get_full_name }}
+                </ui:table-cell>
+
+                <ui:table-cell>
+                    {{ user.role }}
+                </ui:table-cell>
+
+                <ui:table-cell>
+                    {{ user.status }}
+                </ui:table-cell>
+
+            </ui:table-row>
+
+            {% endfor %}
+
+        </ui:table-body>
+
+    </ui:table>
+
+</div>
+
+{% endblock %}

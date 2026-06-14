@@ -1,0 +1,9 @@
+{% if status == "ACTIVE" %}
+    <ui:badge>Active</ui:badge>
+{% endif %}
+
+{% if status == "PENDING" %}
+    <ui:badge variant="secondary">
+        Pending
+    </ui:badge>
+{% endif %}
