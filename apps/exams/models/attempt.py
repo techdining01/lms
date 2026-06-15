@@ -1,15 +1,21 @@
-
 from django.db import models
 
 
 class ExamAttempt(models.Model):
-    student = models.ForeignKey(
-        "accounts.User",
-        on_delete=models.CASCADE,
-    )
+    class Status(models.TextChoices):
+        IN_PROGRESS = "IN_PROGRESS"
+
+        SUBMITTED = "SUBMITTED"
+
+        AUTO_SUBMITTED = "AUTO_SUBMITTED"
 
     exam = models.ForeignKey(
         "exams.Exam",
+        on_delete=models.CASCADE,
+    )
+
+    student = models.ForeignKey(
+        "accounts.User",
         on_delete=models.CASCADE,
     )
 
@@ -20,8 +26,10 @@ class ExamAttempt(models.Model):
         blank=True,
     )
 
-    score = models.DecimalField(
-        max_digits=6,
-        decimal_places=2,
-        default=0,
+    status = models.CharField(
+        max_length=30,
+        choices=Status.choices,
+        default=Status.IN_PROGRESS,
     )
+
+    tab_switch_count = models.PositiveIntegerField(default=0)

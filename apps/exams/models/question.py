@@ -4,8 +4,14 @@ from django.db import models
 class Question(models.Model):
     class QuestionType(models.TextChoices):
         MCQ = "MCQ"
-        ESSAY = "ESSAY"
+
         TRUE_FALSE = "TRUE_FALSE"
+
+        FILL_BLANK = "FILL_BLANK"
+
+        SHORT_ANSWER = "SHORT_ANSWER"
+
+        ESSAY = "ESSAY"
 
     exam = models.ForeignKey(
         "exams.Exam",
@@ -13,12 +19,19 @@ class Question(models.Model):
         related_name="questions",
     )
 
-    text = models.TextField()
+    question_text = models.TextField()
 
     question_type = models.CharField(
-        max_length=20,
+        max_length=30,
         choices=QuestionType.choices,
-        default=QuestionType.MCQ,
     )
 
-    marks = models.PositiveIntegerField(default=1)
+    marks = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        default=1,
+    )
+
+    explanation = models.TextField(blank=True)
+
+    order = models.PositiveIntegerField(default=0)

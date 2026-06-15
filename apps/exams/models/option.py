@@ -1,13 +1,13 @@
 from django.db import models
 
 
-class Choice(models.Model):
+class QuestionOption(models.Model):
     question = models.ForeignKey(
         "exams.Question",
         on_delete=models.CASCADE,
-        related_name="choices",
+        related_name="options",
     )
 
-    text = models.CharField(max_length=500)
+    option_text = models.CharField(max_length=500)
 
     is_correct = models.BooleanField(default=False)

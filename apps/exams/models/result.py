@@ -7,11 +7,26 @@ class ExamResult(models.Model):
         on_delete=models.CASCADE,
     )
 
-    percentage = models.DecimalField(
-        max_digits=5,
+    objective_score = models.DecimalField(
+        max_digits=6,
         decimal_places=2,
+        default=0,
     )
 
-    grade = models.CharField(max_length=10)
+    subjective_score = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        default=0,
+    )
 
-    remarks = models.TextField(blank=True)
+    total_score = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        default=0,
+    )
+
+    percentage = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        default=0,
+    )
