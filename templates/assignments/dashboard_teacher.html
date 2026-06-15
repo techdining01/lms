@@ -1,0 +1,24 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block content %}
+
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+    <c-ui.stats-card
+        title="Assignments"
+        value="{{ stats.total_assignments }}"
+    />
+
+    <c-ui.stats-card
+        title="Submissions"
+        value="{{ stats.total_submissions }}"
+    />
+
+    <c-ui.stats-card
+        title="Published"
+        value="{{ stats.published_assignments }}"
+    />
+
+</div>
+
+{% endblock %}

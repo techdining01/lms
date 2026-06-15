@@ -1,0 +1,60 @@
+<div class="overflow-x-auto">
+
+<table class="w-full">
+
+<thead>
+
+<tr>
+
+<th>Title</th>
+
+<th>Status</th>
+
+<th>Due Date</th>
+
+<th></th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for assignment in assignments %}
+
+<tr>
+
+<td>
+{{ assignment.title }}
+</td>
+
+<td>
+{{ assignment.status }}
+</td>
+
+<td>
+{{ assignment.due_date }}
+</td>
+
+<td>
+
+<a
+href="{% url 'assignments:detail' assignment.pk %}"
+>
+View
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+
+

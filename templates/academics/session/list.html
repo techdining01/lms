@@ -1,0 +1,21 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block content %}
+
+<c-ui.page-header
+    title="Academic Sessions"
+/>
+
+<c-ui.data-table>
+
+    {% for session in sessions %}
+
+        {{ session.name }}
+
+    {% endfor %}
+
+</c-ui.data-table>
+
+{% endblock %}
+
+

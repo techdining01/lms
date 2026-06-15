@@ -1,0 +1,14 @@
+<form
+    hx-post="{% url 'assignments:create' %}"
+    hx-target="#modal-content"
+>
+    {{ form }}
+
+    <button
+        type="submit"
+        class="btn"
+    >
+        Save
+    </button>
+
+</form>

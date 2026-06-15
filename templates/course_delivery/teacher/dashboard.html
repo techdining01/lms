@@ -1,0 +1,27 @@
+<c-ui.page-header
+    title="Teacher Dashboard"
+/>
+
+<div class="grid gap-4 md:grid-cols-4">
+
+    <c-ui.stats-card
+        title="Courses"
+        value="{{ total_courses }}"
+    />
+
+    <c-ui.stats-card
+        title="Lessons"
+        value="{{ total_lessons }}"
+    />
+
+    <c-ui.stats-card
+        title="Students"
+        value="{{ total_students }}"
+    />
+
+    <c-ui.stats-card
+        title="Completion"
+        value="{{ completion_rate }}%"
+    />
+
+</div>

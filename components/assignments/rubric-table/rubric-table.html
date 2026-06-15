@@ -1,0 +1,37 @@
+<table class="w-full">
+
+<thead>
+<tr>
+<th>Criteria</th>
+<th>Maximum</th>
+<th>Score</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for rubric in rubrics %}
+
+<tr>
+
+<td>{{ rubric.criteria }}</td>
+
+<td>{{ rubric.max_score }}</td>
+
+<td>
+
+<input
+    type="number"
+    name="rubric_{{ rubric.id }}"
+    class="w-24"
+/>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>

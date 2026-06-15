@@ -1,0 +1,9 @@
+EDUCATOR_ROLES = [
+    "TEACHER",
+    "INSTRUCTOR",
+]
+
+LEARNER_ROLES = [
+    "STUDENT",
+    "LEARNER",
+]

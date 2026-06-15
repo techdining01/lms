@@ -1,0 +1,17 @@
+{% extends "layouts/dashboard.html" %}
+
+{% block content %}
+
+<div class="space-y-4">
+
+    {% for assignment in assignments %}
+
+        <c-assignments.assignment-card
+            :assignment="assignment"
+        />
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

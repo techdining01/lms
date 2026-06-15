@@ -1,0 +1,33 @@
+{% extends "layout/dashboard.html" %}
+
+{% block content %}
+
+<c-ui.page-header
+    title="Submit Assignment"
+/>
+
+<form
+    method="post"
+    enctype="multipart/form-data"
+>
+
+    {% csrf_token %}
+
+    {{ form }}
+
+    <input
+        type="file"
+        multiple
+        name="files"
+    >
+
+    <button
+        type="submit"
+        class="btn"
+    >
+        Submit
+    </button>
+
+</form>
+
+{% endblock %}
