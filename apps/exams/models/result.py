@@ -2,6 +2,8 @@ from django.db import models
 
 
 class ExamResult(models.Model):
+    position = models.PositiveIntegerField(default=0)
+    
     attempt = models.OneToOneField(
         "exams.ExamAttempt",
         on_delete=models.CASCADE,
@@ -30,3 +32,8 @@ class ExamResult(models.Model):
         decimal_places=2,
         default=0,
     )
+
+
+
+
+

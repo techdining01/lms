@@ -1,0 +1,29 @@
+<div
+x-data="timer()"
+>
+
+<span
+x-text="time"
+></span>
+
+</div>
+
+<script>
+    function timer() {
+
+    return {
+
+        time: 3600,
+
+        init() {
+
+            setInterval(() => {
+
+                this.time--
+
+            }, 1000)
+
+        }
+    }
+}
+</script>

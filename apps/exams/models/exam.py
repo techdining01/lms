@@ -25,6 +25,11 @@ class Exam(models.Model):
         blank=True,
     )
 
+    term = models.ForeignKey(
+        "academics.Term",
+        on_delete=models.CASCADE,
+    )
+
     duration_minutes = models.PositiveIntegerField()
 
     total_marks = models.PositiveIntegerField(default=100)
