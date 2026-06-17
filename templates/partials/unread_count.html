@@ -1,0 +1,13 @@
+<div
+
+hx-get="{% url 'notifications:count' %}"
+
+hx-trigger="every 30s"
+
+hx-swap="innerHTML"
+
+>
+
+{{ unread_count }}
+
+</div>

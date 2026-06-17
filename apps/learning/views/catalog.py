@@ -11,10 +11,10 @@ class CourseCatalogView(ListView):
 
     template_name = "learning/catalog.html"
 
-    queryset = Course.objects.filter(is_published=True).select_related(
-        "category",
-        "instructor",
-    )
+    def get_queryset(self):
+        return Course.objects.filter(status=True).select_related(
+            "category", "instructor"
+        )
 
 
 class CourseDetailView(DetailView):

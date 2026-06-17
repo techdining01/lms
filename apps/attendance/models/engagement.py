@@ -8,7 +8,7 @@ class StudentEngagement(models.Model):
     )
 
     lesson = models.ForeignKey(
-        "course_delivery.Lesson",
+        "learning.Lesson",
         on_delete=models.CASCADE,
     )
 

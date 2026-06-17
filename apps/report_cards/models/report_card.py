@@ -8,17 +8,17 @@ class ReportCard(models.Model):
             "DRAFT",
             "Draft"
         )
-    
+
         REVIEWED = (
             "REVIEWED",
             "Reviewed"
         )
-    
+
         APPROVED = (
             "APPROVED",
             "Approved"
         )
-    
+
         PUBLISHED = (
             "PUBLISHED",
             "Published"
@@ -51,6 +51,12 @@ class ReportCard(models.Model):
         default=0,
     )
 
+    attendance_percentage = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        default=0,
+    )
+
     position = models.PositiveIntegerField(default=0)
 
     teacher_remark = models.TextField(blank=True)
@@ -66,3 +72,4 @@ class ReportCard(models.Model):
     generated_at = models.DateTimeField(auto_now_add=True)
 
     class_size = models.PositiveIntegerField(default=0)
+

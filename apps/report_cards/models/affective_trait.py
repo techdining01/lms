@@ -1,5 +1,4 @@
-from django.contrib.auth import models
-
+from django.db import models
 
 
 class AffectiveTrait(models.Model):
@@ -15,4 +14,3 @@ class AffectiveTrait(models.Model):
     leadership = models.PositiveSmallIntegerField(default=0)
 
     cooperation = models.PositiveSmallIntegerField(default=0)
-

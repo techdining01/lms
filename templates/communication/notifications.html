@@ -1,0 +1,29 @@
+<c-ui.page-header
+    title="Notifications"
+/>
+
+<div class="space-y-4">
+
+{% for notification in notifications %}
+
+<div
+class="
+border
+rounded-lg
+p-4
+"
+>
+
+<h3>
+{{ notification.title }}
+</h3>
+
+<p>
+{{ notification.message }}
+</p>
+
+</div>
+
+{% endfor %}
+
+</div>

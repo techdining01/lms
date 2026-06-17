@@ -1,15 +1,53 @@
-{% extends "layouts/dashboard.html" %}
+{% extends "layout/base.html" %}
 
+{% block content %}
 
-<c-ui.page-header
-    title="Dashboard"
-/>
+<div
+    class="
+    min-h-screen
+    flex
+    "
+>
 
-<div class="grid gap-4">
+    <!-- Sidebar -->
 
-    <c-ui.stats-card
-        title="Students"
-        value="0"
-    />
+    <aside
+        class="
+        hidden
+        lg:block
+        w-72
+        border-r
+        "
+    >
+
+        <c-ui.sidebar />
+
+    </aside>
+
+    <!-- Main Area -->
+
+    <div
+        class="
+        flex-1
+        "
+    >
+
+        <c-ui.topbar />
+
+        <main
+            class="
+            p-4
+            md:p-6
+            "
+        >
+
+            {% block dashboard_content %}
+            {% endblock %}
+
+        </main>
+
+    </div>
 
 </div>
+
+{% endblock %}

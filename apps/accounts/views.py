@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from apps.accounts.models import User
+from apps.accounts.models.user import User
 from django.views import View
 from .services.dashboard import DashboardRouter
 from django.views.generic import ListView

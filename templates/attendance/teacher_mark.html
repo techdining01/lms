@@ -1,0 +1,52 @@
+<c-ui.page-header
+    title="Take Attendance"
+/>
+
+<form
+    hx-post="."
+>
+
+<table class="w-full">
+
+<tr>
+<th>Student</th>
+<th>Status</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+<td>
+{{ student }}
+</td>
+
+<td>
+
+<select
+name="status_{{ student.id }}"
+>
+
+<option value="PRESENT">
+Present
+</option>
+
+<option value="ABSENT">
+Absent
+</option>
+
+<option value="LATE">
+Late
+</option>
+
+</select>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</form>

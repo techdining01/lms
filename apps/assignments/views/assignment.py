@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 
 from apps.assignments.models import Assignment
 
-from apps.assignments.forms.assignment_form import AssignmentForm
+# Import `AssignmentForm` lazily inside the view to avoid app-loading order issues
 
 
 class AssignmentListView(ListView):
@@ -24,7 +24,10 @@ class AssignmentListView(ListView):
 class AssignmentCreateView(CreateView):
     model = Assignment
 
-    form_class = AssignmentForm
+    def get_form_class(self):
+        from apps.assignments.forms.assignment_form import AssignmentForm
+
+        return AssignmentForm
 
     template_name = "assignments/create.html"
 

@@ -1,4 +1,4 @@
-from apps.accounts.models import User
+from apps.accounts.models.user import User
 
 
 

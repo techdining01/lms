@@ -1,6 +1,6 @@
 from django.views.generic import View
 from django.shortcuts import render, get_object_or_404
-from .models import User
+from .models.user import User
 from .services.approval import approve_user
 
 

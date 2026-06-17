@@ -40,16 +40,30 @@ INSTALLED_APPS = [
     # local
     "apps.accounts",
     "apps.academics",
-    "apps.core",
-    "apps.ai",
+    "apps.assignments",
     "apps.learning",
+    "apps.enrollments",
+    "apps.exams",
+    "apps.grades",
+    "apps.report_cards",
+    "apps.attendance",
+    "apps.communication",
+    "apps.core",
+    "apps.course_delivery",
+    # "timetable",
+    # "tenants",
+    # "apps.certificates",
+    # "apps.analytics",
+    # "apps.library",
+    # "apps.subscriptions",
+    # "apps.payments",
     # third party
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     # frontend
     "django_htmx",
-    "django_components",
+    # "django_components",  # temporarily disabled to avoid component autodiscovery during migrations
     "django_browser_reload",
     # alpine js
     "django_alpine",
@@ -163,7 +177,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 # `allauth` needs this from django
                 "django.template.context_processors.request",
-                "apps.core.context_processors.settings_context",
+                # "apps.core.context_processors.settings_context",
             ],
         },
     },
@@ -198,7 +212,6 @@ DATABASES = {
     }
 }
 AI_PROVIDER = config("AI_PROVIDER", default="OPENAI")
-
 
 
 # Password validation
@@ -249,4 +262,3 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-

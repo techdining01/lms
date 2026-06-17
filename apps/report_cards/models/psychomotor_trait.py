@@ -1,5 +1,4 @@
-from django.contrib.auth import models
-
+from django.db import models
 
 
 class PsychomotorTrait(models.Model):
