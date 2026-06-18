@@ -1,43 +1,99 @@
-{% extends "layout/dashboard.html" %}
+{% extends "layout/app.html" %}
 
-{% block title %}
-Dashboard
-{% endblock %}
+{% block app_content %}
 
-{% block dashboard_content %}
+<div class="space-y-8">
 
-<c-ui.page-header
-    title="Dashboard"
-/>
+    <div>
 
-<div
-    class="
-    grid
-    gap-4
-    md:grid-cols-2
-    xl:grid-cols-4
-    "
->
+        <h1 class="text-3xl font-bold">
 
-    <c-ui.stats-card
-        title="Students"
-        value="{{ student_count }}"
-    />
+            Welcome Back,
+            {{ first_name }}
 
-    <c-ui.stats-card
-        title="Courses"
-        value="{{ course_count }}"
-    />
+        </h1>
 
-    <c-ui.stats-card
-        title="Exams"
-        value="{{ exam_count }}"
-    />
+        <p class="text-muted-foreground">
 
-    <c-ui.stats-card
-        title="Attendance"
-        value="{{ attendance_count }}"
-    />
+            {{ welcome_title }}
+
+        </p>
+
+    </div>
+
+    <div
+        class="
+        grid
+        gap-4
+        md:grid-cols-2
+        xl:grid-cols-4
+        "
+    >
+
+        <c-stats-card
+            title="Courses"
+            value="12"
+        />
+
+        <c-stats-card
+            title="Assignments"
+            value="8"
+        />
+
+        <c-stats-card
+            title="Exams"
+            value="4"
+        />
+
+        <c-stats-card
+            title="Certificates"
+            value="2"
+        />
+
+    </div>
+
+    <c-card>
+
+        <div class="p-6">
+
+            <h2
+                class="
+                text-lg
+                font-semibold
+                "
+            >
+                Continue Learning
+            </h2>
+
+            <div class="mt-4">
+
+                Django Masterclass
+
+                <div
+                    class="
+                    h-3
+                    bg-muted
+                    rounded-full
+                    mt-2
+                    "
+                >
+
+                    <div
+                        class="
+                        h-3
+                        w-3/4
+                        bg-primary
+                        rounded-full
+                        "
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </c-card>
 
 </div>
 

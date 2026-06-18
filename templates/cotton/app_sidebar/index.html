@@ -1,0 +1,103 @@
+<aside
+    x-data="{ collapsed: false }"
+    :class="collapsed ? 'w-20' : 'w-72'"
+    class="
+    fixed
+    left-0
+    top-0
+    h-screen
+    border-r
+    bg-background
+    flex
+    flex-col
+    transition-all
+    duration-200
+    "
+>
+
+    <div class="p-4 flex items-center justify-between">
+
+        <c-app-logo />
+
+        <button
+            @click="collapsed = !collapsed"
+            class="hidden lg:inline-flex p-2 rounded-md hover:bg-muted"
+            aria-label="Toggle sidebar"
+        >
+            <span x-text="collapsed ? '➡' : '⬅'"></span>
+        </button>
+
+    </div>
+
+    <nav class="flex-1 px-2 space-y-2">
+
+        {% url 'dashboard' as dashboard_url %}
+        <a href="{{ dashboard_url|default:'#' }}" class="block">
+            <c-button
+                variant="ghost"
+                class="w-full justify-start flex items-center gap-3"
+            >
+                <span class="text-lg">🏠</span>
+                <span x-show="!collapsed" x-cloak class="label">Dashboard</span>
+            </c-button>
+        </a>
+
+        {% url 'learning:course-list' as courses_url %}
+        <a href="{{ courses_url|default:'#' }}" class="block">
+            <c-button
+                variant="ghost"
+                class="w-full justify-start flex items-center gap-3"
+            >
+                <span class="text-lg">📚</span>
+                <span x-show="!collapsed" x-cloak class="label">Courses</span>
+            </c-button>
+        </a>
+
+        {% url 'assignments:list' as assignments_url %}
+        <a href="{{ assignments_url|default:'#' }}" class="block">
+            <c-button
+                variant="ghost"
+                class="w-full justify-start flex items-center gap-3"
+            >
+                <span class="text-lg">📝</span>
+                <span x-show="!collapsed" x-cloak class="label">Assignments</span>
+            </c-button>
+        </a>
+
+        {% url 'exams:exam-list' as exams_url %}
+        <a href="{{ exams_url|default:'#' }}" class="block">
+            <c-button
+                variant="ghost"
+                class="w-full justify-start flex items-center gap-3"
+            >
+                <span class="text-lg">📋</span>
+                <span x-show="!collapsed" x-cloak class="label">Exams</span>
+            </c-button>
+        </a>
+
+        {% url 'attendance:list' as attendance_url %}
+        <a href="{{ attendance_url|default:'#' }}" class="block">
+            <c-button
+                variant="ghost"
+                class="w-full justify-start flex items-center gap-3"
+            >
+                <span class="text-lg">✅</span>
+                <span x-show="!collapsed" x-cloak class="label">Attendance</span>
+            </c-button>
+        </a>
+
+    </nav>
+
+    <div class="p-4 border-t flex items-center justify-between gap-3">
+
+        <div class="flex items-center gap-2">
+            <button onclick="window.toggleTheme && window.toggleTheme()" class="hidden lg:inline-flex p-2 rounded-md hover:bg-muted">Theme</button>
+        </div>
+
+        <div class="flex-1 text-right">
+            <c-user-menu />
+        </div>
+
+    </div>
+
+</aside>

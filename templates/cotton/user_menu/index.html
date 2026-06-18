@@ -1,0 +1,95 @@
+<div
+    x-data="{ open:false }"
+    class="relative flex-shrink-0"
+>
+
+    <button
+        @click="open=!open"
+        class="
+        flex
+        items-center
+        gap-3
+        "
+    >
+
+        <div
+            class="
+            h-10
+            w-10
+            rounded-full
+            bg-primary
+            flex
+            items-center
+            justify-center
+            text-primary-foreground
+            font-semibold
+            "
+        >
+            {{ request.user.first_name|first }}
+        </div>
+
+        <div class="hidden md:block text-left">
+
+            <p class="font-medium">
+
+                {{ request.user.get_full_name }}
+
+            </p>
+
+            <p class="text-xs text-muted-foreground">
+
+                {{ request.user.role }}
+
+            </p>
+
+        </div>
+
+    </button>
+
+    <div
+        x-show="open"
+        x-transition
+        @click.outside="open=false"
+        class="
+        absolute
+        right-0
+        mt-2
+        w-64
+        rounded-xl
+        border
+        bg-background
+        shadow-lg
+        p-2
+        z-50
+        "
+    >
+
+        {% url 'profile' as profile_url %}
+        <a href="{{ profile_url|default:'#' }}">
+            <c-button
+                variant="ghost"
+                class="w-full justify-start"
+            >
+                Profile
+            </c-button>
+        </a>
+
+        {% url 'account_logout' as logout_url %}
+        <form
+            action="{{ logout_url|default:'#' }}"
+            method="post"
+        >
+            {% csrf_token %}
+
+            <c-button
+                variant="ghost"
+                class="w-full justify-start"
+            >
+                Logout
+            </c-button>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,83 @@
+{% extends "layout/app.html" %}
+
+{% block app_content %}
+
+<div class="grid lg:grid-cols-4 gap-6">
+
+    <div class="lg:col-span-3">
+
+        <div class="aspect-video rounded-xl border">
+
+            Video Player
+
+        </div>
+
+        <div class="mt-6">
+
+            <h1 class="text-2xl font-bold">
+
+                {{ course.title }}
+
+            </h1>
+
+            <p class="mt-4">
+
+                {{ course.description }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div>
+
+        {% for section in course.sections.all %}
+
+        <<div x-data="{ open:true }" class="border rounded-lg">
+
+            <button @click="open=!open" class="
+                    w-full
+                    p-3
+                    text-left
+                    font-semibold
+                    ">
+                {{ section.title }}
+            </button>
+
+            <div x-show="open" x-transition>
+            </div>
+
+            {% for lesson in section.lessons.all %}
+
+            <div class="
+                        px-3
+                        py-2
+                        border-t
+                        ">
+
+                {{ lesson.title }}
+
+            </div>
+
+            {% endfor %}
+
+    </div>
+
+    {% endfor %}
+
+</div>
+    <button
+
+        hx-post="{% url 'learning:complete-lesson' lesson.id %}"
+
+        hx-target="#lesson-progress"
+
+    >
+
+        Mark Complete
+
+    </button>
+</div>
+
+{% endblock %}

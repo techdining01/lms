@@ -25,3 +25,12 @@ class Lesson(models.Model):
     order = models.PositiveIntegerField()
 
     is_preview = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return self.title

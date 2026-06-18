@@ -1,0 +1,45 @@
+{% extends "layout/public.html" %}
+
+{% block title %}
+LMS
+{% endblock %}
+
+{% block content %}
+
+<section class="min-h-[80vh] flex items-center">
+    <div class="container mx-auto px-4 py-24 max-w-6xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+
+            <div>
+                <h1 class="text-5xl lg:text-6xl font-extrabold hero-animate">
+                    Modern Learning Management System
+                </h1>
+
+                <p class="mt-4 text-muted-foreground hero-animate">
+                    School Management + Online Learning + AI
+                </p>
+
+                <div class="mt-8 flex gap-4 hero-animate">
+
+                    <a href="{% url 'account_login' %}" class="btn">
+                        Login
+                    </a>
+
+                    <a href="{% url 'account_signup' %}" class="btn">
+                        Register
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="w-full max-w-md rounded-xl shadow-lg overflow-hidden">
+                    <img src="/static/images/hero-illustration.png" alt="LMS illustration" class="w-full h-auto object-cover" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

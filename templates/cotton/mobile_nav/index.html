@@ -1,0 +1,68 @@
+<nav
+    class="
+    fixed
+    bottom-0
+    inset-x-0
+    border-t
+    bg-background
+    lg:hidden
+    z-50
+    "
+>
+
+    <div
+        class="
+        grid
+        grid-cols-5
+        py-2
+        "
+    >
+
+        {% url 'dashboard' as dashboard_url %}
+        <a
+            href="{{ dashboard_url|default:'#' }}"
+            class="text-center text-sm"
+        >
+            🏠
+            <div>Home</div>
+        </a>
+
+        {% url 'learning:course-list' as courses_url %}
+        <a
+            href="{{ courses_url|default:'#' }}"
+            class="text-center text-sm"
+        >
+            📚
+            <div>Courses</div>
+        </a>
+
+        {% url 'assignments:list' as assignments_url %}
+        <a
+            href="{{ assignments_url|default:'#' }}"
+            class="text-center text-sm"
+        >
+            📝
+            <div>Tasks</div>
+        </a>
+
+        {% url 'exams:exam-list' as exams_url %}
+        <a
+            href="{{ exams_url|default:'#' }}"
+            class="text-center text-sm"
+        >
+            📋
+            <div>Exams</div>
+        </a>
+
+        {% url 'profile' as profile_url %}
+        <a
+            href="{{ profile_url|default:'#' }}"
+            class="text-center text-sm"
+        >
+            👤
+            <div>Profile</div>
+        </a>
+
+    </div>
+
+</nav>

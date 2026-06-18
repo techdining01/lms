@@ -1,0 +1,42 @@
+{% extends "layout/auth.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block auth_content %}
+
+<div class="space-y-6">
+
+    <div class="text-center">
+
+        <h1 class="text-2xl font-bold">
+
+            Sign In
+
+        </h1>
+
+    </div>
+
+    <form
+        method="post"
+        class="space-y-4"
+    >
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <c-button
+            type="submit"
+        >
+
+            Sign In
+
+        </c-button>
+
+    </form>
+
+</div>
+
+{% endblock %}

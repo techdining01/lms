@@ -12,3 +12,6 @@ class Section(models.Model):
 
     class Meta:
         ordering = ["order"]
+
+    def __str__(self):
+        return self.title

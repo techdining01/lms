@@ -1,26 +1,16 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+from apps.core.services.dashboard_service import DashboardService
 
 
-class DashboardView(
-    LoginRequiredMixin,
-    TemplateView,
-):
-    template_name = "pages/dashboard/index.html"
+@login_required
+def dashboard(request):
 
-    def get_context_data(
-        self,
-        **kwargs,
-    ):
-        context = super().get_context_data(**kwargs)
+    context = DashboardService.get_dashboard_context(request.user)
 
-        context.update(
-            {
-                "student_count": 0,
-                "course_count": 0,
-                "exam_count": 0,
-                "attendance_count": 0,
-            }
-        )
-
-        return context
+    return render(
+        request,
+        "pages/dashboard/index.html",
+        context,
+    )

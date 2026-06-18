@@ -9,3 +9,12 @@ class LessonProgress(models.Model):
     completed = models.BooleanField(default=False)
 
     completed_at = models.DateTimeField(null=True, blank=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+    class Meta:
+        unique_together = (
+            "learner",
+            "lesson",
+        )
+
+    

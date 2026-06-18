@@ -1,0 +1,8 @@
+<input
+    type="search"
+    name="q"
+    placeholder="Search courses..."
+    hx-get="{% url 'learning:catalog' %}"
+    hx-trigger="keyup changed delay:500ms"
+    hx-target="#course-grid"
+>

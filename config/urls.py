@@ -16,19 +16,45 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path, include
+from apps.core.views.home import LandingPageView
+from django.conf import settings
+from django.http import HttpResponse, Http404
+from pathlib import Path
+
+
+def service_worker(request):
+    """Serve the service worker file from the project's static folder at /sw.js
+
+    This allows the service worker to be registered at the site root (scope '/').
+    """
+    sw_path = Path(settings.BASE_DIR) / "static" / "sw.js"
+    if sw_path.exists():
+        return HttpResponse(
+            sw_path.read_text(encoding="utf-8"), content_type="application/javascript"
+        )
+    raise Http404
+
 
 urlpatterns = [
+    path("", LandingPageView.as_view(), name="landing"),
+    path("sw.js", service_worker),
     path("admin/", admin.site.urls),
-    path("__reload__/", include("django_browser_reload.urls")),
-    # path("accounts/", include("allauth.urls")),
+    path("accounts/", include("allauth.urls")),
+]
+
+urlpatterns += [
+    path("accounts/", include("apps.accounts.urls")),
+    path("academics/", include("apps.academics.urls")),
+    path("learning/", include("apps.learning.urls")),
+    path("enrollment/", include("apps.enrollments.urls")),
+    path("attendance/", include("apps.attendance.urls")),
+    path("exams/", include("apps.exams.urls")),
+    path("grades/", include("apps.grades.urls")),
+    path("report-cards/", include("apps.report_cards.urls")),
+    path("communication/", include("apps.communication.urls")),
     path(
-        "accounts/", 
-        include("apps.accounts.urls")
-        ),
-        
-    path(
-        "",
-        include("apps.learning.urls"),
+        "__reload__/",
+        include("django_browser_reload.urls"),
     ),
 ]

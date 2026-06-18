@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     "apps.communication",
     "apps.core",
     "apps.course_delivery",
+    #
     # "timetable",
     # "tenants",
     # "apps.certificates",
@@ -57,14 +59,17 @@ INSTALLED_APPS = [
     # "apps.library",
     # "apps.subscriptions",
     # "apps.payments",
+    #
     # third party
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     # frontend
     "django_htmx",
-    # "django_components",  # temporarily disabled to avoid component autodiscovery during migrations
+    # "django_components",
+    "django_cotton",
     "django_browser_reload",
+    
     # alpine js
     "django_alpine",
     # ... include the providers you want to enable:
@@ -91,7 +96,7 @@ AUTH_USER_MODEL = "accounts.User"
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
-TAILWIND_APP_NAME = "theme"
+# TAILWIND_APP_NAME = "theme"
 
 LOGIN_URL = "login"
 
@@ -110,7 +115,7 @@ ACCOUNT_SIGNUP_FIELDS = [
     "password2*",
 ]
 
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 ACCOUNT_UNIQUE_EMAIL = True
 
@@ -168,7 +173,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -183,10 +188,11 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATES[0]["OPTIONS"]["context_processors"]
+# TEMPLATES[0]["OPTIONS"]["context_processors"]
 
-COMPONENTS = {"dirs": [BASE_DIR / "components"]}
+# COMPONENTS = {"dirs": [BASE_DIR / "components"]}
 
+ASGI_APPLICATION = "config.asgi.application"
 WSGI_APPLICATION = "config.wsgi.application"
 
 

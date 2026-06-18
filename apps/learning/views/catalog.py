@@ -1,25 +1,21 @@
 from django.views.generic import ListView
-from django.views.generic import DetailView
 
-from apps.learning.models import Course
+from apps.learning.models.course import Course
 
 
 class CourseCatalogView(ListView):
     model = Course
-
+    template_name = "learning/catalog.html"
+    context_object_name = "courses"
     paginate_by = 12
 
-    template_name = "learning/catalog.html"
-
     def get_queryset(self):
-        return Course.objects.filter(status=True).select_related(
-            "category", "instructor"
+        queryset = Course.objects.filter(
+            status=Course.Status.PUBLISHED
         )
+        q = self.request.GET.get("q")
 
+        if q:
+            queryset = queryset.filter(title__icontains=q)
 
-class CourseDetailView(DetailView):
-    model = Course
-
-    slug_field = "slug"
-
-    template_name = "learning/course_detail.html"
+        return queryset

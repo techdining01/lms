@@ -1,0 +1,125 @@
+{% load static %}
+{% load django_browser_reload %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'css/output.css' %}" />
+<link rel="manifest" href="{% static 'manifest.json' %}">
+
+<!-- Alpine.js: attempt local file first, fall back to CDN; starts Alpine when ready -->
+{# prefer a locally-served production build at /static/js/alpine.global.prod.js #}
+
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>
+        {% block title %}
+        LMS
+        {% endblock %}
+    </title>
+
+    {% block css %}{% endblock %}
+
+        <style>
+            :root{
+                --bg: #ffffff;
+                --foreground: #0f172a;
+                --muted: #64748b;
+                --primary: #06b6d4;
+                --primary-foreground: #052c33;
+                --header-bg: rgba(255,255,255,0.9);
+            }
+            .dark{
+                --bg: #0b1220;
+                --foreground: #e6eef8;
+                --muted: #94a3b8;
+                --primary: #06b6d4;
+                --primary-foreground: #062026;
+                --header-bg: rgba(11,18,32,0.75);
+            }
+
+            /* Apply tokens to common elements */
+            body{ background: var(--bg); color: var(--foreground); }
+            header, aside{ background: var(--header-bg); }
+            .btn{ transition: transform .12s ease, box-shadow .12s ease; }
+            .btn:hover{ transform: translateY(-2px); }
+
+            /* subtle hero animation */
+            .hero-animate{ transform: translateY(8px); opacity: 0; animation: heroIn .8s ease .15s forwards; }
+            @keyframes heroIn{ to{ transform: translateY(0); opacity:1 } }
+        </style>
+
+        <script>
+            (function(){
+                try{
+                    var theme = localStorage.getItem('theme');
+                    if(theme === 'dark' || (!theme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+                        document.documentElement.classList.add('dark');
+                    }
+                    window.toggleTheme = function(){
+                        var isDark = document.documentElement.classList.toggle('dark');
+                        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                        var icon = document.getElementById('theme-icon');
+                        if(icon) icon.textContent = isDark ? '☀️' : '🌙';
+                    };
+                    // set initial icon if present
+                    document.addEventListener('DOMContentLoaded', function(){
+                        var icon = document.getElementById('theme-icon');
+                        if(icon) icon.textContent = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+                    });
+                }catch(e){console.error(e)}
+            })();
+        </script>
+
+</head>
+
+<body>
+
+    {% include "partials/messages.html" %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}
+
+    {% django_browser_reload_script %}
+
+        {% django_browser_reload_script %}
+
+        <script>
+            (function(){
+                var localScript = document.createElement('script');
+                localScript.src = '/static/js/alpine.global.prod.js';
+                localScript.defer = true;
+                localScript.onload = function(){ if(window.Alpine && typeof window.Alpine.start === 'function') window.Alpine.start(); };
+                localScript.onerror = function(){
+                    var cdn = document.createElement('script');
+                    cdn.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js';
+                    cdn.defer = true;
+                    cdn.onload = function(){ if(window.Alpine && typeof window.Alpine.start === 'function') window.Alpine.start(); };
+                    document.head.appendChild(cdn);
+                };
+                document.head.appendChild(localScript);
+            })();
+        </script>
+
+        <script>
+                navigator.serviceWorker.register('/sw.js');
+        </script>
+
+</body>
+</html>

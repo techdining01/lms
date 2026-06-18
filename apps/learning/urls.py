@@ -1,21 +1,27 @@
 from django.urls import path
 
-from .views.catalog import (
+from apps.learning.views.catalog import (
     CourseCatalogView,
-    CourseDetailView,
 )
 
-app_name = "learning"
+from apps.learning.views.player import (
+    CoursePlayerView,
+)
 
 urlpatterns = [
     path(
-        "courses/",
+        "",
         CourseCatalogView.as_view(),
         name="catalog",
-    ),
+    ),  
+    
     path(
-        "courses/<slug:slug>/",
-        CourseDetailView.as_view(),
-        name="detail",
+        "courses/<slug:slug>/learn/",
+        CoursePlayerView.as_view(),
+        name="course-player",
     ),
+
 ]
+
+
+ 

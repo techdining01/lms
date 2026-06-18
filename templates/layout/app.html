@@ -1,0 +1,29 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
+<div class="min-h-screen bg-background">
+
+    <div class="hidden lg:block">
+        <c-app-sidebar />
+    </div>
+
+    <div class="lg:pl-72">
+
+        <c-app-topbar />
+
+        <main class="p-4 md:p-6 pb-24">
+
+            {% block app_content %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+    <c-mobile-nav />
+
+</div>
+
+{% endblock %}
+
